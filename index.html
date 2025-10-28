@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio • Cyprien</title>
+
+  <!-- Feuille de style -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Indique qu'on gère dark/light -->
+  <meta name="color-scheme" content="dark light">
+</head>
+<body class="theme-dark"> <!-- thème sombre par défaut -->
+
+  <!-- ========== LOADER (affiché au chargement) ========== -->
+  <div id="loader" class="loader">
+    <div class="loader-logo"><span>CT</span></div>
+  </div>
+
+  <!-- ========== CURSEUR PERSONNALISÉ ========== -->
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-follower" class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ========== CANVAS PARTICULES EN FOND ========== -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header id="site-header" class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">
+        <span class="logo-text">Cyprien</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#home" class="nav-link">Accueil</a>
+        <a href="#about" class="nav-link">À propos</a>
+        <a href="#projects" class="nav-link">Projets</a>
+        <a href="#testimonials" class="nav-link">Témoignages</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Changer le thème">🌓</button>
+        <button id="menuToggle" class="btn-icon menu-btn" aria-label="Ouvrir le menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN ========== -->
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero section fade-in">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h1 class="hero-title">Salut, je suis <span id="hero-name" class="accent-anim">Cyprien !</span></h1>
+          <p class="hero-sub">RédacteurWeb • WebDesigner • WebDévloppeur</p>
+          <p class="hero-desc">Je rédige des textes clairs, percutants et adaptés au web. FOSF</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#projects">Voir mes projets</a>
+            <a class="btn ghost" href="#contact">Me contacter</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="avatar-wrap">
+            <!-- Remplace avatar-placeholder.jpg par ta photo -->
+            <img id="profilePhoto" src="images/Elena.jpg" alt="Cyprien" class="avatar-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section--center fade-in">
+      <div class="container">
+        <h2 class="text-center">À propos</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="max-width-text">Je suis rédacteur web et j'accompagne des projets (associations, freelances, startups) en rédigeant des contenus clairs, adaptés au web et optimisés pour l'engagement.</p>
+            <p class="max-width-text">Call-to-action : télécharger mon CV, voir mes articles, ou consulter mes projets.</p>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat">
+              <!-- data-target used by JS animation -->
+              <h3 id="stat1" data-target="16">0</h3>
+              <p>Âge</p>
+            </div>
+            <div class="stat">
+              <h3 id="stat2" data-target="5">0</h3>
+              <p>Projets</p>
+            </div>
+            <div class="stat">
+              <!-- data-langs is a comma-separated list that will animate in sequence and finish on the last value -->
+              <h3 id="stat3" data-langs="EN,ES,DE,IT,PT,NL,SV,NO,DA,PL,RU,FR">EN</h3>
+              <p>Langue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section fade-in">
+      <div class="container">
+        <h2 class="text-center">Projets</h2>
+        <p class="muted text-center">Clique sur un projet pour voir plus de détails.</p>
+
+        <div class="projects-grid" id="projectsGrid">
+          <article class="project-card" data-title="Template Vitrine" data-desc="Template HTML/CSS/JS responsive, facile à personnaliser." data-image="">
+            <div class="project-thumb">W1</div>
+            <div class="project-body">
+              <h3>Site vitrine (template)</h3>
+              <p class="muted">HTML • CSS • JS</p>
+              <!-- Détails supprimé : clic sur la carte affiche désormais la preview -->
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Jeu de piste" data-desc="Jeu d'énigmes connecté à Discord et web.">
+            <div class="project-thumb">G1</div>
+            <div class="project-body">
+              <h3>Jeu de piste interactif</h3>
+              <p class="muted">Expérience immersive</p>
+              <!-- Détails supprimé : clic sur la carte affiche désormais la preview -->
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT MODAL -->
+    <div id="projectModal" class="modal" aria-hidden="true">
+      <div class="modal-panel">
+        <button id="modalClose" class="modal-close">✕</button>
+        <h3 id="modalTitle" class="text-center"></h3>
+        <p id="modalDesc" class="text-center"></p>
+        <div class="modal-actions">
+          <a id="modalRepo" class="btn primary" href="#" target="_blank" rel="noreferrer">Voir repo / live</a>
+          <button class="btn ghost" onclick="document.location='#contact'">Contact</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section section--center fade-in">
+      <div class="container">
+        <h2 class="text-center">Témoignages</h2>
+        <p class="muted text-center">Les visiteurs peuvent écrire un témoignage et le publier directement (stockage local par défaut).</p>
+
+        <form id="testimonialForm" class="testimonial-form center-media">
+          <input type="text" id="tName" placeholder="Ton prénom ou pseudo" required>
+          <textarea id="tText" rows="3" placeholder="Ton témoignage..." required></textarea>
+          <div class="form-row">
+            <button type="submit" class="btn primary">Publier</button>
+            <!-- Le bouton global de suppression a été retiré. Pour demander la suppression d'un avis, utilise le formulaire de contact. -->
+          </div>
+        </form>
+
+        <p class="muted small text-center">Pour demander la suppression d'un avis, contacte-moi via la section <a href="#contact">Contact</a>.</p>
+
+        <div class="text-center" style="margin:10px 0;">
+          <button id="adminLogin" class="btn ghost">Admin</button>
+          <button id="adminLogout" class="btn ghost" style="display:none;">Déconnexion</button>
+        </div>
+
+        <div id="testimonialsList" class="testimonials-list"></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section--center fade-in">
+      <div class="container">
+        <h2 class="text-center">FAQ</h2>
+        <div class="faq-list" id="faqList">
+          <details>
+            <summary>Comment me contacter pour une prestation ?</summary>
+            <p>Utilise le formulaire de contact ou le bouton mail.</p>
+          </details>
+          <details>
+            <summary>Recevez-vous des commandes sur-mesure ?</summary>
+            <p>Oui — envoie un brief et on discute du scope.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--center fade-in">
+      <div class="container">
+        <h2 class="text-center">Contact</h2>
+        <p class="muted text-center">Remplis le formulaire et je te répondrai — ou utilise le bouton mail.</p>
+
+        <form id="contactForm" class="contact-form center-media">
+          <input type="text" id="cName" placeholder="Ton nom" required>
+          <input type="email" id="cEmail" placeholder="Ton email" required>
+          <textarea id="cMessage" rows="5" placeholder="Ton message..." required></textarea>
+          <div class="form-row">
+            <button type="submit" class="btn primary">Envoyer (mailto)</button>
+            <button type="button" id="contactReset" class="btn ghost">Effacer</button>
+          </div>
+          <p id="contactNote" class="muted small">Astuce : pour envoi sans ouvrir le client mail, je peux t'intégrer EmailJS.</p>
+          <!-- zone d'état pour confirmer envoi ou afficher une erreur -->
+          <div id="contactStatus" class="contact-status" role="status" aria-live="polite" style="display:none;"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BACK TO TOP -->
+  <button id="backTop" class="back-top" title="Remonter en haut">↑</button>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p>© <span id="year"></span> Ton Nom</p>
+        <p class="muted small">Rédacteur — Disponible pour collaborations</p>
+      </div>
+
+      <div class="socials">
+        <a href="http://discordapp.com/users/763808029580722297" target="_blank" rel="noreferrer" aria-label="Discord">Discord</a>
+        <a href="https://github.com/Theorik" target="_blank" rel="noreferrer" aria-label="GitHub">GitHub</a>
+        <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- script principal -->
+  <!-- EmailJS SDK (optionnel) -->
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
