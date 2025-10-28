@@ -1,0 +1,2 @@
+# Netlify _redirects - redirect apex to www (permanent)
+https://cyprien.space/* https://www.cyprien.space/:splat 301!

@@ -10,6 +10,18 @@
 
   <!-- Indique qu'on gère dark/light -->
   <meta name="color-scheme" content="dark light">
+  <!-- Redirect apex to www to ensure canonical domain -->
+  <script>
+    (function(){
+      try{
+        var host = location.hostname;
+        if(host === 'cyprien.space'){
+          var target = 'https://www.cyprien.space' + location.pathname + location.search + location.hash;
+          location.replace(target);
+        }
+      }catch(e){ /* ignore in older browsers */ }
+    })();
+  </script>
 </head>
 <body class="theme-dark"> <!-- thème sombre par défaut -->
 
